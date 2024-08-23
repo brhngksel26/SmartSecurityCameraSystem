@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  smart-security-camera-system:
+    container_name: smart-security-camera-system
+    build: .
+    stdin_open: true
+    tty: true
+    restart: on-failure
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongo
+    volumes:
+      - .:/smart-security-camera-system
+      - ./data/files:/data/files
