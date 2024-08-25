@@ -10,7 +10,24 @@ services:
     ports:
       - 8000:8000
     depends_on:
-      - mongo
+      - redis
     volumes:
       - .:/smart-security-camera-system
       - ./data/files:/data/files
+  celery_worker:
+    container_name: celery_worker
+    build: .
+    command: celery -A app.utils.celery_app.celery_app -P celery_pool_asyncio:TaskPool worker --loglevel=info
+    ports:
+      - 127.0.0.1:8001:8000
+    volumes:
+      - .:/smart-security-camera-system
+    env_file:
+      - .env
+    depends_on:
+      - smart-security-camera-system
+      - redis
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
