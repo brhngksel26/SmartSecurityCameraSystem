@@ -1,0 +1,56 @@
+{% include "include/header.html" %}
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+{% include "include/navbar.html" %}
+{% include "include/topbar.html" %}
+
+
+<div class="card shadow mb-4">
+    <h1>Add New Camera</h1>
+    <form action="{{ url_for('create_camera') }}" method="post">
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location" required><br>
+        
+        <label for="ip_address">IP Address:</label>
+        <input type="text" name="ip_address" id="ip_address" required><br>
+        
+        <label for="is_active">Active:</label>
+        <input type="checkbox" name="is_active" id="is_active" value="true"><br>
+        
+        <button type="submit">Add Camera</button>
+    </form>
+    <a href="{{ url_for('get_cameras') }}">Back to Camera List</a>
+</div>
+
+{% include "include/footer.html" %}
