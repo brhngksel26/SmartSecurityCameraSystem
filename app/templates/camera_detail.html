@@ -1,0 +1,66 @@
+{% include "include/header.html" %}
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+{% include "include/navbar.html" %}
+{% include "include/topbar.html" %}
+
+
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Report Detail</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                <form action="{{ url_for('delete_report', report_id=report.id) }}" method="post">
+                    <button class="dropdown-item" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <h1>Camera Detail</h1>
+        <p><strong>ID:</strong> {{ camera.id }}</p>
+        <p><strong>Location:</strong> {{ camera.location }}</p>
+        <p><strong>IP Address:</strong> {{ camera.ip_address }}</p>
+        <p><strong>Status:</strong> {{ "Active" if camera.is_active else "Inactive" }}</p>
+        <a href="{{ url_for('update_camera_form', camera_id=camera.id) }}">Edit</a>
+        <a href="{{ url_for('get_cameras') }}">Back to Camera List</a>
+    </div>
+</div>
+
+{% include "include/footer.html" %}
