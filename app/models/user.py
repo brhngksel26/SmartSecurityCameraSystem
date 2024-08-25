@@ -8,5 +8,8 @@ class User(BaseModel):
     email = fields.CharField(max_length=100, unique=True)
     password = fields.CharField(max_length=128)
 
+    class Meta:
+        table = "users"
+
     def __str__(self):
         return self.email
